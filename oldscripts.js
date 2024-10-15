@@ -1,4 +1,3 @@
-// Fixed mode
 function setupNavbarLinks() {
   document.querySelectorAll(".navbar a").forEach((link) => {
     link.addEventListener("click", function (event) {
@@ -18,10 +17,8 @@ function setupNavbarLinks() {
   });
 }
 
-// Fixed mode
 setupNavbarLinks();
 
-// Contact form
 const contactForm = document.getElementById("contact_form");
 contactForm.addEventListener("submit", (e) => {
   e.preventDefault();
@@ -37,7 +34,6 @@ contactForm.addEventListener("submit", (e) => {
   window.location.href = href;
 });
 
-// Theme toggle
 const themeToggleBtn = document.getElementById("themeToggleBtn");
 
 themeToggleBtn.addEventListener("click", () => {
@@ -54,12 +50,10 @@ themeToggleBtn.addEventListener("click", () => {
   }
 });
 
-// Start with dark theme
 window.onload = function () {
   document.body.classList.add("dark");
 };
 
-// Scroll button functionality
 const scrollBtn = document.querySelector("#scrollBtn");
 const allSections = document.querySelectorAll(".content section");
 
@@ -69,7 +63,7 @@ scrollBtn.addEventListener("click", () => {
   if (scrollBtn.classList.contains("scroll-active")) {
     allSections.forEach((section) => {
       section.classList.remove("active");
-      section.style.marginBottom = "0rem"; // No gap when going back to fixed mode
+      section.style.marginBottom = "0rem";
     });
     content.style.overflow = "hidden";
     content.style.justifyContent = "center";
@@ -79,24 +73,20 @@ scrollBtn.addEventListener("click", () => {
     const homePage = document.querySelector(".home_page");
     homePage.classList.add("active");
 
-    // Show home text when switching to scroll mode
     switchToHomeText();
   } else {
     allSections.forEach((section) => {
       section.classList.add("active");
-      section.style.marginBottom = "8rem"; // Gap of 8rem in scroll mode
+      section.style.marginBottom = "8rem";
     });
     content.style.overflow = "auto";
     content.style.justifyContent = "start";
     scrollBtn.textContent = "Fixed Site";
     scrollBtn.classList.add("scroll-active");
 
-    // Reinitialize the navbar links to work correctly
     setupNavbarLinks();
   }
 });
-
-// Text switching functionality
 const homeText = document.getElementById("homeText");
 const texts = [
   "Competitive programmer",
@@ -112,16 +102,14 @@ function switchText() {
     currentIndex = (currentIndex + 1) % texts.length;
     homeText.textContent = texts[currentIndex];
     homeText.classList.add("show");
-  }, 500); // Time for the text to disappear
+  }, 500);
 }
 
-// Function to ensure the home text is displayed when switching to the home section
 function switchToHomeText() {
-  currentIndex = 0; // Reset index
-  homeText.textContent = texts[currentIndex]; // Set initial text
-  homeText.classList.add("show"); // Show the text immediately
-  setInterval(switchText, 3000); // Start the text switch interval
+  currentIndex = 0;
+  homeText.textContent = texts[currentIndex];
+  homeText.classList.add("show");
+  setInterval(switchText, 3000);
 }
 
-// Start the text switching initially
 switchToHomeText();
